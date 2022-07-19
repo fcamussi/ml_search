@@ -21,6 +21,7 @@ public class MLBuscar {
 	
 	private String [] palabrasClave;
 	private ArrayList<Registro> registros;
+	private String sitio;
 
 	
 	
@@ -32,17 +33,13 @@ public class MLBuscar {
 		this.palabrasClave = palabrasClave;
 	}
 	
+	public void setSitio(String sitio) {
+		this.sitio = sitio;
+	}
+	
 	public void ConsultarProducto() throws Exception {
 		
-		String mlurl = "https://api.mercadolibre.com/sites/MLA/search?q=";
-		String producto = "";
-		for (String pc: palabrasClave ) {
-			producto = producto + " " + pc;
-		}
-		producto = URLEncoder.encode(producto, "UTF-8");
-		String url_str = mlurl + producto;
-
-		String resultado = ConsultarAPI(url_str);
+		String resultado = ConsultarURL(this.getURLStr());
 		
 		JSONObject obj = new JSONObject(resultado);
         //String pageName = obj.getJSONObject("results").getString("results");
@@ -52,7 +49,18 @@ public class MLBuscar {
 
 	}
 	
-	private String ConsultarAPI(String url_str) throws Exception {
+	private String getURLStr() throws Exception {
+		String url_str = "https://api.mercadolibre.com/sites/" + this.sitio + "/search?q=";
+		String producto = "";
+		for (String pc: this.palabrasClave) {
+			producto = producto + " " + pc;
+		}
+		producto = URLEncoder.encode(producto, "UTF-8");
+		url_str = url_str + producto;
+		return url_str;
+	}
+	
+	private String ConsultarURL(String url_str) throws Exception {
 		URL url = new URL(url_str);
 		URLConnection urlConn = url.openConnection();
 		urlConn.setRequestProperty("Accept", "");	
