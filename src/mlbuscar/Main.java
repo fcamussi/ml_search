@@ -9,6 +9,8 @@ public class Main {
 			String [] palabrasClave = {"msx", "talent"}; 
 			mlbuscar.setPalabrasClave(palabrasClave);
 			mlbuscar.ConsultarProducto();
+			System.out.print("\n" + mlbuscar.listaRegistro.size() + "\n");
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

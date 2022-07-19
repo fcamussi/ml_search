@@ -13,20 +13,23 @@ import org.json.JSONObject;
 
 public class MLBuscar {
 	
+	public class ListaRegistro extends ArrayList<Registro> {
+		private static final long serialVersionUID = 1L;	
+	}
+
 	private class Registro {
 		public String id;
 		public String title;
 		public String permalink;
 	}
 	
+	public ListaRegistro listaRegistro;
 	private String [] palabrasClave;
-	private ArrayList<Registro> registros;
 	private String sitio;
+	
 
-	
-	
 	public MLBuscar() {
-		registros = new ArrayList<Registro>();
+		listaRegistro = new ListaRegistro();
 	}
 	
 	public void setPalabrasClave(String [] palabrasClave) {
@@ -37,26 +40,45 @@ public class MLBuscar {
 		this.sitio = sitio;
 	}
 	
-	public void ConsultarProducto() throws Exception {
-		
-		String resultado = ConsultarURL(this.getURLStr());
-		
-		JSONObject obj = new JSONObject(resultado);
-        //String pageName = obj.getJSONObject("results").getString("results");
-//		JSONArray arr = obj.getJSONArray("results");
-//		int cantidad = arr.length();
-		System.out.print(obj.getJSONObject("paging").get("limit").toString());
+	public void ConsultarProducto() throws Exception {	
+		String resultado = ConsultarURL(this.getURLStr(0));
+		JSONObject jsonObj = new JSONObject(resultado);
+		int limit = jsonObj.getJSONObject("paging").getInt("limit");
+		int total = jsonObj.getJSONObject("paging").getInt("total");
 
+		this.listaRegistro.clear();
+		this.agregarRegistros(jsonObj.getJSONArray("results"));
+		for (int offset = limit; offset < total; offset += limit) {
+			resultado = ConsultarURL(this.getURLStr(offset));
+			jsonObj = new JSONObject(resultado);
+			this.agregarRegistros(jsonObj.getJSONArray("results"));
+		}		
 	}
 	
-	private String getURLStr() throws Exception {
+	private void agregarRegistros(JSONArray jsonArr) throws Exception {
+		for (int c = 0; c < jsonArr.length(); c++) {
+			
+			// cheackear que cada palabra clave esté en el título
+			
+			Registro registro = new Registro();
+			registro.id = jsonArr.getJSONObject(c).get("id").toString();
+			registro.title = jsonArr.getJSONObject(c).get("title").toString();
+			registro.permalink = jsonArr.getJSONObject(c).get("permalink").toString();
+			listaRegistro.add(registro);
+			System.out.print(registro.permalink + "\n");
+		}
+		
+	}
+
+	private String getURLStr(int offset) throws Exception {
 		String url_str = "https://api.mercadolibre.com/sites/" + this.sitio + "/search?q=";
-		String producto = "";
-		for (String pc: this.palabrasClave) {
-			producto = producto + " " + pc;
+		String producto = this.palabrasClave[0];
+		for (int c = 1; c < this.palabrasClave.length; c++) {
+			producto = producto + " " + this.palabrasClave[c];
 		}
 		producto = URLEncoder.encode(producto, "UTF-8");
 		url_str = url_str + producto;
+		url_str = url_str + "&offset=" + offset;
 		return url_str;
 	}
 	
