@@ -26,7 +26,7 @@ public class MLSitio {
 	}
 
 	public String getNombreSitio(IDSitio id) {
-		return nombreSitio[IDSitio.MLA.ordinal()];
+		return nombreSitio[id.ordinal()];
 	}
 
 }

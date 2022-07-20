@@ -13,6 +13,7 @@ public class Main {
 			mlbuscar.setSitio(IDSitio.MLA);
 			String[] palabrasClave = { "MSX", "talent" };
 			mlbuscar.setPalabrasClave(palabrasClave);
+			mlbuscar.setFiltrado(false);
 			mlbuscar.BuscarProducto();
 			for (Articulo articulo : mlbuscar.getArticulos()) {
 				System.out.print(articulo.permalink + "\n");
