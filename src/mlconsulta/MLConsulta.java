@@ -1,4 +1,4 @@
-package mlbuscar;
+package mlconsulta;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,7 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class MLBuscar {
+public class MLConsulta {
 	
 	public class ListaRegistro extends ArrayList<Registro> {
 		private static final long serialVersionUID = 1L;	
@@ -28,11 +28,14 @@ public class MLBuscar {
 	private String sitio;
 	
 
-	public MLBuscar() {
+	public MLConsulta() {
 		listaRegistro = new ListaRegistro();
 	}
 	
 	public void setPalabrasClave(String [] palabrasClave) {
+		for (int c = 0; c < palabrasClave.length; c++) {
+			palabrasClave[c] = palabrasClave[c].toLowerCase();
+		}
 		this.palabrasClave = palabrasClave;
 	}
 	
@@ -40,7 +43,7 @@ public class MLBuscar {
 		this.sitio = sitio;
 	}
 	
-	public void ConsultarProducto() throws Exception {	
+	public void BuscarProducto() throws Exception {	
 		String resultado = ConsultarURL(this.getURLStr(0));
 		JSONObject jsonObj = new JSONObject(resultado);
 		int limit = jsonObj.getJSONObject("paging").getInt("limit");
@@ -56,18 +59,24 @@ public class MLBuscar {
 	}
 	
 	private void agregarRegistros(JSONArray jsonArr) throws Exception {
-		for (int c = 0; c < jsonArr.length(); c++) {
-			
-			// cheackear que cada palabra clave esté en el título
-			
-			Registro registro = new Registro();
-			registro.id = jsonArr.getJSONObject(c).get("id").toString();
-			registro.title = jsonArr.getJSONObject(c).get("title").toString();
-			registro.permalink = jsonArr.getJSONObject(c).get("permalink").toString();
-			listaRegistro.add(registro);
-			System.out.print(registro.permalink + "\n");
+		for (int c = 0; c < jsonArr.length(); c++) {	
+			String title = jsonArr.getJSONObject(c).get("title").toString().toLowerCase();
+			/* Chequea que cada palabra clave esté contenido en el título */
+			boolean coincide = true;
+			for (String pc : this.palabrasClave) {
+				if (! title.contains(pc)) {
+					coincide = false;
+				}
+			}
+			if (coincide) {
+				Registro registro = new Registro();
+				registro.id = jsonArr.getJSONObject(c).get("id").toString();
+				registro.title = title;
+				registro.permalink = jsonArr.getJSONObject(c).get("permalink").toString();
+				listaRegistro.add(registro);
+				System.out.print(registro.permalink + "\n");
+			}
 		}
-		
 	}
 
 	private String getURLStr(int offset) throws Exception {
