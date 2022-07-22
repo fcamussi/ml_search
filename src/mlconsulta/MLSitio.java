@@ -30,3 +30,7 @@ public class MLSitio {
 	}
 
 }
+
+
+// https://api.mercadolibre.com/sites <- paises
+// https://api.mercadolibre.com/countries/AR <- estado/provincia

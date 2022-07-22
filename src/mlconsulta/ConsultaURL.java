@@ -17,8 +17,7 @@ class ConsultaURL {
 		StringBuffer stringBuffer = new StringBuffer();
 		String line;
 
-		while ((line = bufferedReader.readLine()) != null)
-		{
+		while ((line = bufferedReader.readLine()) != null) {
 			stringBuffer.append(line);
 		}
 		

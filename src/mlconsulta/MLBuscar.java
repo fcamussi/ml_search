@@ -23,6 +23,7 @@ public class MLBuscar {
 
 	/* Variables privadas */
 	private String sitio;
+	private String estado;
 	private String[] palabrasClave;
 	private boolean filtrado = true;
 	private ListaArticulo articulos;
@@ -35,6 +36,14 @@ public class MLBuscar {
 		this.sitio = id.name();
 	}
 
+	/**
+	 * Setea el estado/provincia
+	 * @param estado String con el nombre del estado 
+	 */
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 	/**
 	 * Setea las palabras clave a buscar
 	 * @param palabrasClave Palabras clave, un array de String
