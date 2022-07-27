@@ -11,8 +11,8 @@ public class Main {
 			System.out.print(mlsitio.getNombreSitio(IDSitio.MLA) + "\n");
 			MLBuscar mlbuscar = new MLBuscar();
 			mlbuscar.setSitio(IDSitio.MLA);
-			String[] palabrasClave = { "MSX", "talent" };
-			mlbuscar.setPalabrasClave(palabrasClave);
+			String palabras = "MSX    talent";
+			mlbuscar.setPalabras(palabras);
 			mlbuscar.setFiltrado(true);
 			mlbuscar.BuscarProducto();
 			for (Articulo articulo : mlbuscar.getArticulos()) {
