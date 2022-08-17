@@ -1,7 +1,7 @@
 package mlsearcher;
 
 /**
- * Clase para almacenar los valores de los artículos.
+ * Clase para almacenar la información de los artículos
  *
  * @author Fernando Camussi
  */
@@ -10,20 +10,10 @@ public class Item {
     private String id;
     private String title;
     private String price;
-    private String currencyId;
+    private String currency;
     private String permalink;
     private String thumbnail;
-    private String stateName;
-
-    public Item() {
-        id = "";
-        title = "";
-        price = "";
-        currencyId = "";
-        permalink = "";
-        thumbnail = "";
-        stateName = "";
-    }
+    private String state;
 
     public String getId() {
         return id;
@@ -49,12 +39,12 @@ public class Item {
         this.price = price;
     }
 
-    public String getCurrencyId() {
-        return currencyId;
+    public String getCurrency() {
+        return currency;
     }
 
-    public void setCurrencyId(String currencyId) {
-        this.currencyId = currencyId;
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public String getPermalink() {
@@ -73,12 +63,12 @@ public class Item {
         this.thumbnail = thumbnail;
     }
 
-    public String getStateName() {
-        return stateName;
+    public String getState() {
+        return state;
     }
 
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
+    public void setState(String state) {
+        this.state = state;
     }
 
 }
