@@ -117,6 +117,22 @@ public class MLSearcher {
     }
 
     /**
+     * Consulta la cantidad de resultados que produce la búsqueda
+     *
+     * @return La cantidad de resultados
+     * @throws Exception Si falla la consulta
+     */
+    public int getResultCount() throws Exception {
+        if (siteId == null) throw new Exception("Id de sitio no especificado");
+        Url url = new Url();
+        url.setAgent(agent);
+        String content = url.getContent(buildURLStr(0));
+        JSONObject jsonObj = new JSONObject(content);
+        int total = jsonObj.getJSONObject("paging").getInt("total");
+        return total;
+    }
+
+    /**
      * Realiza la búsqueda
      *
      * @throws Exception Si falla la búsqueda
@@ -160,7 +176,7 @@ public class MLSearcher {
             String price = jsonArr.getJSONObject(c).get("price").toString();
             String currency = jsonArr.getJSONObject(c).get("currency_id").toString();
             String permalink = jsonArr.getJSONObject(c).get("permalink").toString();
-            String thumbnail = jsonArr.getJSONObject(c).get("thumbnail").toString();
+            String thumbnailLink = jsonArr.getJSONObject(c).get("thumbnail").toString();
             String state = jsonArr.getJSONObject(c).getJSONObject("address").get("state_name").toString();
             Item item = new Item();
             item.setId(id);
@@ -168,7 +184,7 @@ public class MLSearcher {
             item.setPrice(price);
             item.setCurrency(currency);
             item.setPermalink(permalink);
-            item.setThumbnail(thumbnail);
+            item.setThumbnailLink(thumbnailLink);
             item.setState(state);
             if (filtered) { /* Chequea que cada palabra esté contenida en el título del artículo */
                 boolean match = true;
