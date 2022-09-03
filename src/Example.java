@@ -1,9 +1,7 @@
-import mlsearcher.MLSearcher;
-
 import java.util.Map;
 import java.util.Scanner;
 
-import mlsearcher.Item;
+import mlsearcher.MLSearcher;
 import mlsearcher.MLSite;
 
 public class Example {
@@ -20,14 +18,14 @@ public class Example {
 		for (String siteId: siteMap.keySet()) {
 			System.out.println(siteId + ": " + siteMap.get(siteId));
 		}
-		
+
 		System.out.println("Ingrese ID del sitio: ");
 		Scanner sc = new Scanner(System.in);
 		String siteId = sc.nextLine();
 		System.out.println("Ingrese palabras a buscar separadas por espacios: ");
 		String words = sc.nextLine();
 		sc.close();
-		
+
 		MLSearcher mlsearcher = new MLSearcher();
 		mlsearcher.setSiteId(siteId);
 		mlsearcher.setWords(MLSearcher.stringToStringList(words));
@@ -39,9 +37,9 @@ public class Example {
 		}
 		int count = mlsearcher.getFoundItems().size();
 		System.out.println("Se encontraron los siguientes " + count + " artículos:");
-		for (Item item : mlsearcher.getFoundItems()) {
-			System.out.println(item.getTitle());
+		for (Map<String,String> item : mlsearcher.getFoundItems()) {
+			System.out.println(item.get("title"));
 		}
 	}
-	
+
 }
