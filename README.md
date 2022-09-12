@@ -4,7 +4,7 @@ Librería de Java para hacer búsquedas utilizando la API de Mercado Libre
 
 ## Documentación
 
-La librería contiene dos clases principales, la clase MLSearcher para buscar artículos en Mercado Libre y la clase MLSite para obtener los sitios (paises) disponibles.
+La librería contiene dos clases principales, la clase **MLSearcher** para buscar artículos en Mercado Libre y la clase **MLSite** para obtener los sitios (paises) disponibles.
 
 ### MLSearcher
 
@@ -15,7 +15,7 @@ static String stringListToString(List<String> stringList)
 ```
 Convierte una lista de strings en una string
 
-Parámetros: stringList - Lista de strings a convertir
+*Parámetros*: stringList - Lista de strings a convertir
 
 Retorna: String
 
