@@ -4,7 +4,7 @@ Librería de Java para hacer búsquedas utilizando la API de Mercado Libre
 
 ## Documentación
 
-La librería contiene dos clases, la clase MLSearcher para buscar artículos en Mercado Libre y la clase MLSite para obtener los sitios (paises) disponibles.
+La librería contiene dos clases principales, la clase MLSearcher para buscar artículos en Mercado Libre y la clase MLSite para obtener los sitios (paises) disponibles.
 
 ### MLSearcher
 
@@ -98,3 +98,31 @@ List<Map<String,String>> getFoundItems()
 Obtiene la lista de artículos encontrados
 
 Retorna: Lista de artículos de tipo Map
+
+
+### MLSites
+
+#### Métodos
+
+```
+public void setAgent(String agent)
+```
+Setea el agente HTTP
+
+Parámetros: agent - Nombre del agente HTTP. Por defecto es MLSearcher
+
+
+```
+public void request()
+```
+Consulta y almacena los sitios
+
+Throws: Exception - Si falla la consulta
+
+
+```
+public Map<String,String> getSites()
+```
+Obtiene los sitios
+
+Retorna: Identificadores y nombres de los sitios
