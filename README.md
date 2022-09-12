@@ -16,14 +16,16 @@ static String stringListToString(List<String> stringList)
 Convierte una lista de strings en una string
 
 Parameters:
-    stringList - Lista de strings a convertir
-Returns:
-    String
 
-#### Métodos
+    stringList - Lista de strings a convertir
+
+Returns:
+
+    String
 
 ```
 static List<String> stringToStringList(String string)
+```
 Convierte una string en una lista de strings
 
 Parameters:
