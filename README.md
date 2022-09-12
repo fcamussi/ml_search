@@ -20,6 +20,8 @@ Parameters:
 Returns:
     String
 
+#### Métodos
+
 ```
 static List<String> stringToStringList(String string)
 Convierte una string en una lista de strings
