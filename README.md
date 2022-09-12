@@ -19,6 +19,7 @@ Parámetros: stringList - Lista de strings a convertir
 
 Retorna: String
 
+
 ```
 static List<String> stringToStringList(String string)
 ```
@@ -27,6 +28,7 @@ Convierte una string en una lista de strings
 Parámetros: string - La string a convertir
 
 Retorna: Lista de strings
+
 
 #### Métodos
 
@@ -37,6 +39,7 @@ Setea el id del sitio donde se hará la búsqueda: MLA, MLB, etc.
 
 Parámetros: siteId - Id del sitio
 
+
 ```
 void setAgent(String agent)
 ```
@@ -44,12 +47,14 @@ Setea el agente HTTP
 
 Parámetros: agent - Nombre del agente HTTP. Por defecto es MLSearcher
 
+
 ```
 void 	setWords(List<String> wordList) 	
 ```
 Setea las palabras a buscar
 
 Parámetros: wordList - Lista de palabras
+
 
 ```
 void setMaxResultCount(int maxResultCount)
@@ -60,12 +65,14 @@ Parámetros: maxResultCount - Cantidad máxima de resultados. El valor por defec
 
 Throws: Exception - Si maxResultCount es mayor a 1000
 
+
 ```
 void setFiltered(boolean filtered)
 ```
 Setea si se hace un filtrado para que las palabras estén contenidas dentro del título + marca + modelo
 
 Parámetros: filtered - true para filtrar, false para no filtrar. Por defecto es true
+
 
 ```
 int getResultCount()
@@ -75,6 +82,7 @@ Consulta la cantidad de resultados que produce la búsqueda
 Retorna: La cantidad de resultados
 
 Throws: Exception - Si falla la consulta
+
     
 ```
 void searchItems()
@@ -82,6 +90,7 @@ void searchItems()
 Realiza la búsqueda
 
 Throws: Exception - Si falla la búsqueda o el id del sitio no fue especificado
+
 
 ```
 List<Map<String,String>> getFoundItems()
