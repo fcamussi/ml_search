@@ -96,6 +96,7 @@ void searchItems()
 Realiza la búsqueda
 
 Throws:
+
     Exception - Si falla la búsqueda o el id del sitio no fue especificado
 
 ```
@@ -104,4 +105,5 @@ List<Map<String,String>> getFoundItems()
 Obtiene la lista de artículos encontrados
 
 Returns:
+
     Lista de artículos de tipo Map
