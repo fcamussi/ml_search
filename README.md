@@ -126,3 +126,11 @@ public Map<String,String> getSites()
 Obtiene los sitios
 
 Retorna: Identificadores y nombres de los sitios
+
+
+### Ejemplo
+
+El fichero Example.java es un ejemplo de como usar la librería.
+
+![screenshot1](https://user-images.githubusercontent.com/75378876/189576979-17821d38-ef4e-4f5b-acc1-49bdbc5eab78.png)
+![screenshot2](https://user-images.githubusercontent.com/75378876/189576981-d8d8626f-cfa4-4d8d-ae1e-44cebb7f5b14.png)
