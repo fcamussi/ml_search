@@ -52,7 +52,7 @@ Setea el agente HTTP
 
 
 ```
-void 	setWords(List<String> wordList) 	
+void setWords(List<String> wordList) 	
 ```
 Setea las palabras a buscar
 
